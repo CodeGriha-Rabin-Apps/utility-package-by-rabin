@@ -1,6 +1,6 @@
 name: utility_package_by_rabin
 description: "A new Flutter package project."
-version: 0.0.2
+version: 0.0.21
 homepage:
 
 environment:
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_mobile_ads: ^5.2.0
 
 dev_dependencies:
   flutter_test:
