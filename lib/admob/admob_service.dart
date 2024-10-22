@@ -6,9 +6,9 @@ class AdMobService {
   final String interstitialAdUnitId;
   final String rewardedAdUnitId;
 
-  BannerAd? _bannerAd;
-  InterstitialAd? _interstitialAd;
-  RewardedAd? _rewardedAd;
+  static BannerAd? _bannerAd;
+  static InterstitialAd? _interstitialAd;
+  static RewardedAd? _rewardedAd;
 
   // Constructor that accepts ad unit IDs
   AdMobService({
@@ -22,7 +22,7 @@ class AdMobService {
   }
 
   // Load and show a banner ad
-  void loadBannerAd() {
+  Future<void> loadBannerAd() async {
     _bannerAd = BannerAd(
       adUnitId: bannerAdUnitId,
       size: AdSize.banner,
@@ -49,8 +49,8 @@ class AdMobService {
   }
 
   // Load and show an interstitial ad
-  void loadInterstitialAd() {
-    InterstitialAd.load(
+  Future<void> loadInterstitialAd() async {
+    await InterstitialAd.load(
       adUnitId: interstitialAdUnitId,
       request: AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
@@ -73,8 +73,8 @@ class AdMobService {
   }
 
   // Load and show a rewarded ad
-  void loadRewardedAd() {
-    RewardedAd.load(
+  Future<void> loadRewardedAd() async {
+    await RewardedAd.load(
       adUnitId: rewardedAdUnitId,
       request: AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
@@ -89,7 +89,7 @@ class AdMobService {
     );
   }
 
-  void showRewardedAd(Function onUserEarnedReward) {
+  Future<void> showRewardedAd(Function onUserEarnedReward) async {
     if (_rewardedAd != null) {
       _rewardedAd!.show(
         onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
