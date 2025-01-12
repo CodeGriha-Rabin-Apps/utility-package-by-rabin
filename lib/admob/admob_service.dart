@@ -93,7 +93,7 @@ class AdMobService {
     if (_rewardedAd != null) {
       _rewardedAd!.show(
         onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
-          onUserEarnedReward();
+          onUserEarnedReward(reward);
           print('Reward Earned: ${reward.amount}');
         },
       );
